@@ -1,5 +1,6 @@
-from src.masks import get_mask_account, get_mask_card_number
 from datetime import datetime
+
+from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(input_data: str) -> str:
@@ -39,6 +40,3 @@ def get_date(date_string: str) -> str:
             return dt.strftime("%d.%m.%Y")
         except (ValueError, IndexError) as e:
             raise ValueError(f"Некорректный формат даты: {date_string}. Ожидается ISO формат") from e
-
-
-
