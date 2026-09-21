@@ -1,4 +1,5 @@
-from typing import List, Dict, Any
+from typing import Any, Dict, List
+
 from src.processing import filter_by_state, sort_by_date
 
 data: List[Dict[str, Any]] = [
