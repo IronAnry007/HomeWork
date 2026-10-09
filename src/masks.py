@@ -5,7 +5,7 @@ def get_mask_card_number(card_number: Union[str, int]) -> str:
     """Функция которая, принимает на вход номер карты и возвращает ее маску."""
 
     card_number = str(card_number)
-    if len(card_number) == 16:
+    if len(card_number) == 16 and card_number.isdigit():
         first_numbers = card_number[:4]
         second_numbers = card_number[4:6]
         middle_numbers = "** ****"
