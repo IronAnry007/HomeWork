@@ -1,6 +1,7 @@
 import pytest
 
-from src.widget import mask_account_card
+from src.widget import mask_account_card, get_date
+
 
 #Корректные тесты с разными типами карт и счетов.
 @pytest.mark.parametrize("input_data, expected", [("Maestro 1596837868705199", 'Maestro 1596 83** **** 5199'),
@@ -31,3 +32,23 @@ def test_mask_account_card_bad_input():
 #Проверка на лишние пробелы
 def test_mask_account_card_extra_spaces():
     assert mask_account_card(" Счет   64686473678894779589 ") == "Счет **9589"
+
+
+#Тестирование правильности преобразования даты на различных входных форматах даты, включая граничные
+# случаи и нестандартные строки с датами.
+@pytest.mark.parametrize("input_date, expected_output", [("2024-03-11T02:26:18.671407", "11.03.2024"),
+                                                         ("2024-03-11", "11.03.2024"),
+                                                         ("2020-02-29", "29.02.2020"),
+                                                         ("2019-02-28", "28.02.2019"),
+                                                         ("2024-12-31", "31.12.2024"),
+                                                         ("2024-01-01", "01.01.2024"),])
+def test_get_date_valid(input_date, expected_output):
+    assert get_date(input_date) == expected_output
+
+
+#Проверка, что функция корректно обрабатывает входные строки, на не верный формат или
+# где отсутствует дата.
+@pytest.mark.parametrize("invalid_date", ["11.03.2024", ""])
+def test_get_date_invalid(invalid_date):
+    with pytest.raises(ValueError, match="Некорректный формат даты"):
+        get_date(invalid_date)
