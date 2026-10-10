@@ -20,7 +20,7 @@ def get_mask_account(account_number: Union[str, int]) -> str:
     """Функция которая, принимает на вход номер счета и возвращает его маску."""
 
     account_number = str(account_number)
-    if len(account_number) >= 4:
+    if len(account_number) >= 4 and account_number.isdigit():
         last_account_number = account_number[-4:]
         encrypted_account_number = f"**{last_account_number}"
         return encrypted_account_number
