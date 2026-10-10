@@ -1,6 +1,5 @@
 import pytest
 
-
 @pytest.fixture
-def name():
-    pass
+def str_with_letters():
+    return "1234abcd90123456"

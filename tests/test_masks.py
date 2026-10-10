@@ -1,4 +1,5 @@
 import pytest
+
 from src.masks import get_mask_card_number, get_mask_account
 
 
@@ -20,9 +21,9 @@ def test_get_mask_card_number_too_short():
     assert get_mask_card_number("123456789012345") == "Номер карты должен состоять строго из 16 цифр."
 
 
-def test_get_mask_card_number_with_letters():
+def test_get_mask_card_number_with_letters(str_with_letters):
     # Буквы в номере
-    assert get_mask_card_number("1234abcd90123456") == "Номер карты должен состоять строго из 16 цифр."
+    assert get_mask_card_number(str_with_letters) == "Номер карты должен состоять строго из 16 цифр."
 
 
 def test_get_mask_card_number_empty():
@@ -42,9 +43,9 @@ def test_get_mask_account_too_short():
     assert get_mask_account("323") == "Номер счета должен состоять строго из 4 и более цифр."
 
 
-def test_get_mask_account_with_letters():
+def test_get_mask_account_with_letters(str_with_letters):
     # Буквы в номере
-    assert get_mask_account("1234abcd90123456") == "Номер счета должен состоять строго из 4 и более цифр."
+    assert get_mask_account(str_with_letters) == "Номер счета должен состоять строго из 4 и более цифр."
 
 
 def test_get_mask_account_empty():
