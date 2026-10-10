@@ -9,15 +9,16 @@ def mask_account_card(input_data: str) -> str:
     if not input_data:
         return "Ошибка: пустая строка"
 
-    new_data = input_data.rsplit(" ", 1)
+    normalized = " ".join(input_data.split())
+    parts = normalized.rsplit(" ", 1)
 
-    if len(new_data) != 2:
-        return "Ошибка: больше двух подстрок"
+    if len(parts) != 2:
+        return "Ошибка: не удалось выделить номер (ожидается формат 'префикс номер')"
 
-    card = new_data[0]
-    number = new_data[1]
+    card = parts[0]
+    number = parts[1]
 
-    if "счет" in card.title():
+    if "счет" in card.lower():
         encrypted_number = get_mask_account(number)
     else:
         encrypted_number = get_mask_card_number(number)
