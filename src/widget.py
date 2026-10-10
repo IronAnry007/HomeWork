@@ -26,8 +26,7 @@ def mask_account_card(input_data: str) -> str:
 
 
 def get_date(date_string: str) -> str:
-    """Преобразует строку с датой из формата '2024-03-11T02:26:18.671407'
-    в формат 'ДД.ММ.ГГГГ'."""
+    """Преобразует строку с датой из формата '2024-03-11T02:26:18.671407' в формат 'ДД.ММ.ГГГГ'."""
 
     try:
 
@@ -39,5 +38,5 @@ def get_date(date_string: str) -> str:
         try:
             dt = datetime.strptime(date_string[:10], "%Y-%m-%d")
             return dt.strftime("%d.%m.%Y")
-        except (ValueError, IndexError) as e:
+        except ValueError as e:
             raise ValueError(f"Некорректный формат даты: {date_string}. Ожидается ISO формат") from e
