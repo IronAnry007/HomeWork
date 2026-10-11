@@ -46,7 +46,7 @@ def test_get_date_valid(input_date, expected_output):
     assert get_date(input_date) == expected_output
 
 
-#Проверка, что функция корректно обрабатывает входные строки, на не верный формат или
+#Проверка, что функция корректно обрабатывает входные строки на не верный формат или
 # где отсутствует дата.
 @pytest.mark.parametrize("invalid_date", ["11.03.2024", ""])
 def test_get_date_invalid(invalid_date):
