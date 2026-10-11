@@ -18,7 +18,7 @@ def sort_by_date(transactions: List[Dict[str, Any]], reverse: bool = True) -> Li
 
         try:
             return datetime.fromisoformat(str(date_str))
-        except ValueError, TypeError:
+        except (ValueError, TypeError):
             return datetime.min
 
     return sorted(transactions, key=parse_to_datetime, reverse=reverse)
