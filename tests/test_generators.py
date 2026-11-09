@@ -72,12 +72,15 @@ def test_card_number_generator_basic_range() -> None:
     ]
 
 
-def test_card_number_generator_min_value() -> None:
+@pytest.mark.parametrize(
+    "start, stop, expected",
+    [
+        (1, 1, ["0000 0000 0000 0001"]),
+        (9999999999999999, 9999999999999999, ["9999 9999 9999 9999"]),
+    ],
+)
+def test_card_number_generator(start: int, stop: int, expected: list[str]) -> None:
     # Тесты, что генератор корректно обрабатывает крайние значения диапазона и правильно завершает генерацию.
-    result = list(card_number_generator(1, 1))
-    assert result == ["0000 0000 0000 0001"]
+    result = list(card_number_generator(start, stop))
 
-
-def test_card_number_generator_max_value() -> None:
-    result = list(card_number_generator(9999999999999999, 9999999999999999))
-    assert result == ["9999 9999 9999 9999"]
+    assert result == expected
