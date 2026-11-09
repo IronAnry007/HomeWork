@@ -1,6 +1,6 @@
 import pytest
 
-from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
+from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
 def test_filter_by_currency(for_generators: list[dict]) -> None:
@@ -10,7 +10,6 @@ def test_filter_by_currency(for_generators: list[dict]) -> None:
     expected_ids = [939719570, 142264268, 895315941]
 
     assert actual_ids == expected_ids
-
 
 
 def test_filter_by_currency_no_matches(for_generators: list[dict]) -> None:
@@ -35,8 +34,9 @@ def test_transaction_descriptions_full_list(for_generators: list[dict]) -> None:
         "Перевод со счета на счет",
         "Перевод со счета на счет",
         "Перевод с карты на карту",
-        "Перевод организации"
+        "Перевод организации",
     ]
+
 
 def test_transaction_descriptions(for_generators: list[dict]) -> None:
     # Тест на работу функции с различным количеством входных транзакций.
